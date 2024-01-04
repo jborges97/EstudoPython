@@ -1,6 +1,9 @@
 import os
 
-restaurantes = ['Pizza','Sushi']
+restaurantes = [{'nome':'Praça', 'categoria':'Japonesa', 'ativo':False}, 
+                    {'nome':'Pizza Superma', 'categoria':'Pizza', 'ativo':True},
+                    {'nome':'Cantina', 'categoria':'Italiano', 'ativo':False}]
+
 
 def exibir_nome_do_programa():
 
@@ -25,11 +28,13 @@ def finalizar_app():
     os.system('cls')
     print('Finalizando app\n')
 
+def voltar_ao_menu_principal():
+    input('\nDigite uma tecla para voltar ao menu ')
+    main()
 
 def opcao_invalida():
     print('Opção invalida!\n')    
-    input('Digite uma tecla para voltar ao menu principal ')
-    main()
+    voltar_ao_menu_principal()
 
 
 
@@ -39,15 +44,18 @@ def cadastrar_novo_restaurante():
     nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
     restaurantes.append(nome_do_restaurante)
     print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
-    input('Digite uma tecla para voltar ao menu principal.')
-    main()
+    
+    voltar_ao_menu_principal()
 
 def listar_restaurantes():
     os.system('cls')
     print('Listando os restaurantes\n')
 
     for restaurante in restaurantes:
-        print(f'.{restaurante}')
+        nome_restaurante = restaurante['nome']
+        categoria = restaurante['categoria' ]
+        ativo = restaurante['ativo']
+        print(f'- {nome_restaurante} | {categoria} | {ativo}')
 
     input('Digite uma tecla para voltar ao menu principal.')
     main()
